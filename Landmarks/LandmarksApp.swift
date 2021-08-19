@@ -9,13 +9,16 @@ import SwiftUI
 
 @main
 struct LandmarksApp: App {
-    let persistenceController = PersistenceController.shared
     @StateObject private var modelData = ModelData()
-
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                .environmentObject(modelData)
         }
+
+        #if os(watchOS)
+        WKNotificationScene(controller: NotificationController.self, category: "LandmarkNear")
+        #endif
     }
 }

@@ -10,6 +10,7 @@ import SwiftUI
 @main
 struct LandmarksApp: App {
     let persistenceController = PersistenceController.shared
+    @StateObject private var modelData = ModelData()
 
     var body: some Scene {
         WindowGroup {
